@@ -1,6 +1,8 @@
 import { View, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+
 import { useState } from 'react';
+
 
 import Button from '@/components/Button';
 import ImageViewer from '@/components/ImageViewer';
@@ -20,14 +22,14 @@ export default function Index() {
     if (!result.canceled) {
       setSelectedImage(result.assets[0].uri);
     } else {
-      alert('You did not select any image:(');
+      alert('You did not select any image.');
     }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-      <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
+        <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
       </View>
       <View style={styles.footerContainer}>
         <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
