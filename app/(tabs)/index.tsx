@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Button from '@/components/Button';
 import ImageViewer from '@/components/ImageViewer';
 import IconButton from '@/components/IconButton';
-import CircleButton from '@/components/IconButton';
+import CircleButton from '@/components/CircleButton';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
