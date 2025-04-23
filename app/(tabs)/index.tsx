@@ -1,14 +1,14 @@
 import { View, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-
 import { useState } from 'react';
-
 
 import Button from '@/components/Button';
 import ImageViewer from '@/components/ImageViewer';
 import IconButton from '@/components/IconButton';
 import CircleButton from '@/components/CircleButton';
+
 import EmojiPicker from '@/components/EmojiPicker';
+
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
@@ -29,7 +29,6 @@ export default function Index() {
       setShowAppOptions(true);
     } else {
       alert('You did not select any image.');
-
     }
   };
 
@@ -39,10 +38,14 @@ export default function Index() {
 
   const onAddSticker = () => {
     setIsModalVisible(true);
-  }
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   const onSaveImageAsync = async () => {
-    setIsModalVisible(false);
+    // we will implement this later
   };
 
   return (
@@ -51,18 +54,18 @@ export default function Index() {
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
       </View>
       {showAppOptions ? (
-        <View style = {styles.optionsContainer}>
-          <View style = {styles.optionsRow}>
-            <IconButton icon = "refresh" label = "reset" onPress = {onReset} />
-            <CircleButton icon="add" label="Add Sticker" onPress={onAddSticker} />
+        <View style={styles.optionsContainer}>
+          <View style={styles.optionsRow}>
+            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
             <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
           </View>
         </View>
       ) : (
-      <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-        <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
-      </View>
+        <View style={styles.footerContainer}>
+          <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
+          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+        </View>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
         {/* A list of emoji component will go here */}
